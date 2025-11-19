@@ -99,6 +99,7 @@ export class DogsComponent {
   getIsVisibleFunction(): (animal: Animal) => boolean {
     return (animal: Animal) => {
       let inGermany = !this.isFilterActive('inGermany', 'inGermany') || this.animalSv.isInGermany(animal);
+      let patenGesucht = !this.isFilterActive('patenGesucht', 'patenGesucht') || (animal.patenGesucht ?? false);
 
       let fitsSize = !this.activeFilter('size');
       if (animal.shoulderHeightCm) {
@@ -120,7 +121,7 @@ export class DogsComponent {
         if (this.isFilterActive('age', 'old') && yearsOld >= 7) fitsAge = true;
       }
 
-      return fitsSize && fitsGender && fitsAge && inGermany;
+      return fitsSize && fitsGender && fitsAge && inGermany && patenGesucht;
     };
   }
 

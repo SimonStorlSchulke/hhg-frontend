@@ -54,6 +54,7 @@
               <div class="bubbles">
                 <span class="emergency" *ngIf="cAnimal.emergency">Notfall</span>
                 <span *ngIf="animalSv.isInGermany(cAnimal)">{{ cAnimal.whereInGermany }}</span>
+                <span class="emergency" *ngIf="cAnimal.patenGesucht">Paten gesucht!</span>
               </div>
             </div>
             <div class="cv-description">

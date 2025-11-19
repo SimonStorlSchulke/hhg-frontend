@@ -35,6 +35,12 @@ export class DogsService {
         ['old', false],
       ]),
     ],
+    [
+      'patenGesucht',
+      new Map([
+        ['patenGesucht', false],
+      ]),
+    ],
   ]);
 
   lastSelectedDogId: number = -1;
