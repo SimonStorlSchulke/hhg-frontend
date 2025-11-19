@@ -144,8 +144,13 @@ export class DogsComponent {
     const sizeText = sizeTexts.get(this.activeFilter("size") ?? "") ?? "";
     const ageText = ageTexts.get(this.activeFilter("age") ?? "") ?? "";
     const inGermanyText = this.isFilterActive('inGermany', 'inGermany') ? "in Deutschland" : "";
+    const patenGesuchtText = this.isFilterActive('patenGesucht', 'patenGesucht') ? ", die Paten suchen" : "";
 
-    const text = [genderText, inGermanyText, sizeText, ageText].join(" ");
+    let text = [genderText, inGermanyText, sizeText, ageText, patenGesuchtText]
+      .join(" ")
+      .replace(/\s\s+/g, ' ')
+      .replace(" , ", ", ");
+
     if(text.trim() == "Hunde") return "";
     return text;
   }
