@@ -98,3 +98,13 @@ export type Animal = {
     status?: "vermittelbar" | "unvermittelbar" | "vermittelt";
   }
 }
+
+export type OrgaData = {
+  adresse?: string,
+  bankverbindung?: string,
+  telefonnummer?: string,
+  email?: string,
+  linkFacebook?: string,
+  linkInstagram?: string,
+  linkPaypal?: string,
+}

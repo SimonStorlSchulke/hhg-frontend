@@ -27,6 +27,8 @@ export class FooterComponent {
   strapiSv = inject(StrapiService);
   cookiebannerSv = inject(CookiebannerService);
 
+  orgaData$ = this.strapiSv.getOrgaData();
+
   footerData$ = this.strapiSv.get<FooterDataBannerData[]>("footer-banners").pipe(
     switchMap((footers) => {
       const footerIds = footers.map((footerData) => footerData.documentId);
@@ -34,4 +36,5 @@ export class FooterComponent {
       return this.strapiSv.get<FooterDataBannerData>(`footer-banners/${randomId}?populate=*`);
     }),
   );
+
 }

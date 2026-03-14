@@ -126,7 +126,6 @@ export class DogsComponent {
   }
 
   getExplainer() {
-
     const sizeTexts = new Map<string, string>([
       ["small", "mit bis zu 30cm Schulterhöhe"],
       ["medium", "mit 30-55cm Schulterhöhe"],

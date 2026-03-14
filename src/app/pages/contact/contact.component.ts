@@ -1,3 +1,4 @@
+import { AsyncPipe } from '@angular/common';
 import {Component, ElementRef, inject, ViewChild} from '@angular/core';
 import {HeroComponent} from '../../shared/hero/hero.component';
 import {ActivatedRoute, ResolveFn, RouterLink} from '@angular/router';
@@ -33,7 +34,7 @@ export const contactResolver: ResolveFn<ContactData> = () => {
 @Component({
   selector: 'app-contact',
   standalone: true,
-  imports: [HeroComponent, ArticleComponent, TeammemberTileComponent, RouterLink],
+  imports: [HeroComponent, ArticleComponent, TeammemberTileComponent, RouterLink, AsyncPipe],
   templateUrl: './contact.component.html',
   styleUrl: './contact.component.scss'
 })
@@ -41,6 +42,8 @@ export class ContactComponent {
   contactData!: ContactData;
   mailFormSv = inject(MailformService);
   strapiSv = inject(StrapiService);
+
+  orgaData$ = this.strapiSv.getOrgaData();
 
   valid = false;
   sentStatus = 0;

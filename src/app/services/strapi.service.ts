@@ -1,8 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, map } from 'rxjs';
-import { StrapiFilter, StrapiMedia } from '../shared/shared-types';
-import { StrapiQueryBuilder } from './StrapiQueryBuilder';
+import { Observable, map, of, tap } from 'rxjs';
+import { OrgaData, StrapiFilter, StrapiMedia } from '../shared/shared-types';
 
 let showDrafts = false;
 
@@ -56,6 +55,16 @@ export class StrapiService {
 
   get isDevEnv(): boolean {
     return window.location.origin.includes("//dev.") || window.location.origin.includes(":4200");
+  }
+
+  private _orgaData?: OrgaData;
+  getOrgaData(): Observable<OrgaData> {
+    if(this._orgaData) {
+      return of(this._orgaData);
+    }
+    return this.get<OrgaData>("organisationsdaten").pipe(tap(loadedData => {
+      this._orgaData = loadedData;
+    }))
   }
 
   getAsString(path: string, filters: StrapiFilter[] = []): Observable<string> {
